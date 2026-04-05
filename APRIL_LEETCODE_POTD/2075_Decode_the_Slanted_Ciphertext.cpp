@@ -3,7 +3,7 @@
 using namespace std;
 class Solution {
 public:
-    //to push on github 
+    //T.C->O(N) AND S.C->O(N) 
     string decodeCiphertext(string encodedText, int rows) {
         int n=encodedText.size();
         int col=n/rows;
@@ -31,3 +31,30 @@ public:
         return ans;
     }
 };
+
+//T.C->O(N) AND S.C->O(1)
+class Solution{
+public:
+    string decodeCipherText(string encodedText, int rows) {
+            int n=encodedText.size();
+            int col=n/rows;
+            string ans="";
+            int i=0, j=0;
+            while(j<col){
+                int r=i, c=j;
+                while(r<rows && c<col){
+                    int idx=r*col+c;
+                    ans+=encodedText[idx];
+                    r++;
+                    c++;
+                }
+                j++;
+            }
+            int k=ans.size();-1;
+            while(k>=0 && ans[k]==' '){
+                ans.pop_back();
+                k--;
+            }
+            return ans;
+        }
+    };
